@@ -1,0 +1,4 @@
+expresionesRegulares.R:
+
+- Name columns in dataframe, get the names from original file
+- Check types of columns and if they aren't what they are suppose to be, change them to their right type
