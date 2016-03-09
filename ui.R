@@ -1,5 +1,7 @@
 
-ui <- fluidPage(
+fluidPage(
+   
   fileInput("archivo","Archivo",multiple = F),
   verbatimTextOutput("stats")
+  
 )

@@ -7,7 +7,7 @@ clean_file <- function(lines_char){
 
        clean_file <- gsub("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
        "\\1-\\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9",
-       x = text_lines,
+       x = lines_char,
        perl = TRUE)
 }
 
