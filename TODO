@@ -1,15 +1,15 @@
 project: 
 
-- Change names of files to english and try to reflect expressive names
-- Please make sure you are using indentation and good programming style
+- Change names of files to english and try to reflect expressive names *
+- Please make sure you are using indentation and good programming style *
 expresionesRegulares.R:
 
-- Name columns in dataframe, get the names from original file
+- Name columns in dataframe, get the names from original file *
 - Check types of columns and if they aren't what they are suppose to be, change them to their right type
-- Modify this file, so you can have functions that perform the cleaning of the file
-- Create function to receive vector of chars and returns a dataframe
+- Modify this file, so you can have functions that perform the cleaning of the file *
+- Create function to receive vector of chars and returns a dataframe *
 
 implementacionShiny.R
 
-- First, change implementacionShiny.R to server.R and ui.R 
-- Modify this two files to use regex_functions.R to use its functions to use them here.
+- First, change implementacionShiny.R to server.R and ui.R * 
+- Modify this two files to use regex_functions.R to use its functions to use them here. *
