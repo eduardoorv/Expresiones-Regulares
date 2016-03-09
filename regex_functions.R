@@ -1,5 +1,4 @@
-setwd("/home/eduardo/expresionesRegulares")
-
+setwd("/Users/natorro/Desktop/RFONDEN/githubs/eduardo/Expresiones-Regulares/")
 conn <- file("CIJ_Total-ORIGINAL.res", "r") 
 text_lines <- readLines(conn, n = -1)
 

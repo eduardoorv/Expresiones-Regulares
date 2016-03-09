@@ -1,3 +1,4 @@
+source("regex_functions.R")
 
 function(input, output, session){
   
