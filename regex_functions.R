@@ -27,8 +27,22 @@ for(i in 1:length(clean_data)){
   
 }
 
-data_frame <- data.frame(val_matrix)
+data_frame_char <- data.frame(val_matrix, stringsAsFactors = FALSE)
+
+names(data_frame_char) <- c("Temporalidad","Escenario", "Frecuencia", "EP", "VarP", "a", "b", "EXP")
+
+for(i in c("Frecuencia", "EP", "VarP", "a", "b", "EXP")){
+  
+  data_frame_char[,i] <- as.numeric(data_frame_char[,i])
+  
+}
+
+data_frame <- data_frame_char
 
 }
 
 val_dataframe <- data_frame(y)
+
+tail(val_dataframe)
+
+
