@@ -4,54 +4,59 @@ function(input, output, session){
   
   clean_file <- function(lines_char){
     
+    validated_lines <- grep ("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
+                             lines_char,
+                             perl = TRUE)  
+    
+    
     clean_file <- gsub("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
                        "\\1-\\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9",
-                       x = lines_char,
+                       x = lines_char[validated_lines],
                        perl = TRUE)
+    
   }
   
   data_frame <- function(clean_data){
     
-    val_matrix <- array(dim = c(length(clean_data), 8))
+       val_matrix <- array(dim = c(length(clean_data), 8))
     
-    for(i in 1:length(clean_data)){
+       for(i in 1:length(clean_data)){
       
-      val_matrix[i,] <- unlist(strsplit(x = clean_data[i], split = ","))
+               val_matrix[i,] <- unlist(strsplit(x = clean_data[i], split = ","))
       
-    }
+       }
     
-    data_frame_char <- data.frame(val_matrix, stringsAsFactors = FALSE)
+       data_frame_char <- data.frame(val_matrix, stringsAsFactors = FALSE)
     
-    names(data_frame_char) <- c("Temporalidad","Escenario", "Frecuencia", "EP", "VarP", "a", "b", "EXP")
+       names(data_frame_char) <- c("Temporalidad","Escenario", "Frecuencia", "EP", "VarP", "a", "b", "EXP")
     
-    for(i in c("Frecuencia", "EP", "VarP", "a", "b", "EXP")){
+       for(i in c("Frecuencia", "EP", "VarP", "a", "b", "EXP")){
       
-      data_frame_char[,i] <- as.numeric(data_frame_char[,i])
+               data_frame_char[,i] <- as.numeric(data_frame_char[,i])
       
-    }
+       }
     
-    data_frame <- data_frame_char
+       data_frame <- data_frame_char
     
   }
   
   data <- reactive({
     
-    if(is.null(input$archivo))  return(NULL)
+       if(is.null(input$archivo))  return(NULL)
     
-    else{
+       else{
       
-      conn <- file(input$archivo$datapath, "r")
-      #text_lines <- readLines(conn, n = -1)
-      y <- clean_file(readLines(conn, n = -1))
-      close(conn)
-      data_frame(y)
+               conn <- file(input$archivo$datapath, "r")
+               y <- clean_file(readLines(conn, n = -1))
+               close(conn)
+               data_frame(y)
     
       }
   })
   
   output$stats <- renderPrint({
     
-    tail(data())
+       tail(data())
     
   })
-  }
+}
