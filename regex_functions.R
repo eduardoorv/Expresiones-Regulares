@@ -3,11 +3,17 @@ conn <- file("CIJ_Total-ORIGINAL.res", "r")
 text_lines <- readLines(conn, n = -1)
 
 clean_file <- function(lines_char){
-
+  
+       validated_lines <- grep ("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
+       lines_char,
+       perl = TRUE)  
+  
+  
        clean_file <- gsub("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
        "\\1-\\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9",
-       x = lines_char,
+       x = lines_char[validated_lines],
        perl = TRUE)
+       
 }
 
 y <- clean_file(text_lines)
