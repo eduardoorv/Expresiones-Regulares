@@ -10,7 +10,7 @@ clean_file <- function(lines_char){
   
   
        clean_file <- gsub("\\s+(\\d+)\\s+(\\d+)\\s+([^=]*=\\d*\\.*\\d*|[^_]+_[^\\s]*)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)\\s*$",
-       "\\1-\\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9",
+       "\\1, \\3, \\4, \\5, \\6, \\7, \\8, \\9",
        x = lines_char[validated_lines],
        perl = TRUE)
        
@@ -34,9 +34,9 @@ for(i in 1:length(clean_data)){
 
 data_frame_char <- data.frame(val_matrix, stringsAsFactors = FALSE)
 
-names(data_frame_char) <- c("Temporalidad","Escenario", "Frecuencia", "EP", "VarP", "a", "b", "EXP")
+names(data_frame_char) <- c("Temporalidad", "Escenario", "Frecuencia", "EP", "VarP", "a", "b", "EXP")
 
-for(i in c("Frecuencia", "EP", "VarP", "a", "b", "EXP")){
+for(i in c("Temporalidad", "Frecuencia", "EP", "VarP", "a", "b", "EXP")){
   
   data_frame_char[,i] <- as.numeric(data_frame_char[,i])
   
